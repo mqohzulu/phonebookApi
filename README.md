@@ -36,26 +36,26 @@ Setup
 Frontend
 1.	Install dependencies
 bash
-Copy
-npm install
+
+**npm install**
 2.	Run application
 bash
-Copy
-ng serve
+
+**ng serve**
 Backend
 1.	Restore packages
 bash
-Copy
-dotnet restore
+
+**dotnet restore**
 2.	Run API
 bash
-Copy
-dotnet run
+
+**dotnet run**
 Technologies
-•	Frontend: Angular with Material UI
-•	Backend: .NET Core Web API
-•	Database: SQLite
-Development Server
+•	Frontend: **Angular with Material UI**
+•	Backend: **.NET Core Web API**
+•	Database: **SQLite**
+Development **Server**
 •	Frontend: http://localhost:4200
 •	Backend: http://localhost:7160
 
