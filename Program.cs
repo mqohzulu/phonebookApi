@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using phonebookApi.Repositories.Interfaces;
 using phonebookApi.Repositories;
 using PhonebookApp.API.Data;
+using ContactManagement.Application;
+using ContactManagement.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,8 +19,6 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<PhonebookContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-builder.Services.AddScoped<IContactRepository, ContactRepository>();
 
 builder.Services.AddCors(options =>
 {
