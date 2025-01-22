@@ -1,4 +1,5 @@
 ﻿using ContactManagement.Application.Interfaces;
+using ContactManagement.Application.Users.DTOs;
 using ContactManagement.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -120,6 +121,11 @@ namespace ContactManagement.Infrastructure.Persistance.Repositories
         public async Task<bool> AnyAsync(Expression<Func<User, bool>> predicate)
         {
             return await _context.Users.AnyAsync(predicate);
+        }
+
+        Task<List<UserDto>> IUserRepository.GetAllAsync(string? searchTerm, int page, int pageSize)
+        {
+            throw new NotImplementedException();
         }
     }
 }

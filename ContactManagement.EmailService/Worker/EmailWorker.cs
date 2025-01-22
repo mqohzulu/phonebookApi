@@ -23,164 +23,161 @@ namespace ContactManagement.EmailService.Worker
         private readonly ILogger<EmailWorker> _logger;
         private readonly IModel _channel;
         private readonly IConnection _connection;
-        private readonly EmailService _emailService;
+        //private readonly EmailService _emailService;
         private const string ExchangeName = "contact_management";
 
-        public EmailWorker(
-            IOptions<RabbitMQSettings> rabbitMQSettings,
-            EmailService emailService,
-            ILogger<EmailWorker> logger)
+        public EmailWorker(IOptions<RabbitMQSettings> rabbitMQSettings, ILogger<EmailWorker> logger)
         {
-            _emailService = emailService;
-            _logger = logger;
+            //_emailService = emailService;
+            //_logger = logger;
 
-            var factory = new ConnectionFactory
-            {
-                HostName = rabbitMQSettings.Value.HostName,
-                UserName = rabbitMQSettings.Value.UserName,
-                Password = rabbitMQSettings.Value.Password,
-                VirtualHost = rabbitMQSettings.Value.VirtualHost
-            };
+            //var factory = new ConnectionFactory
+            //{
+            //    HostName = rabbitMQSettings.Value.HostName,
+            //    UserName = rabbitMQSettings.Value.UserName,
+            //    Password = rabbitMQSettings.Value.Password,
+            //    VirtualHost = rabbitMQSettings.Value.VirtualHost
+            //};
 
-            _connection = factory.CreateConnection();
-            _channel = _connection.CreateModel();
+            //_connection = factory.CreateConnection();
+            //_channel = _connection.CreateModel();
 
-            SetupRabbitMQ();
+            //SetupRabbitMQ();
         }
 
         private void SetupRabbitMQ()
         {
-            _channel.ExchangeDeclare(ExchangeName, ExchangeType.Topic, true);
+            //_channel.ExchangeDeclareAsycn(ExchangeName, ExchangeType.Topic, true);
 
-            // Declare Queues
-            _channel.QueueDeclare(
-                queue: "email.welcome",
-                durable: true,
-                exclusive: false,
-                autoDelete: false);
+            //// Declare Queues
+            //_channel.QueueDeclare(
+            //    queue: "email.welcome",
+            //    durable: true,
+            //    exclusive: false,
+            //    autoDelete: false);
 
-            _channel.QueueDeclare(
-                queue: "email.contact.created",
-                durable: true,
-                exclusive: false,
-                autoDelete: false);
+            //_channel.QueueDeclare(
+            //    queue: "email.contact.created",
+            //    durable: true,
+            //    exclusive: false,
+            //    autoDelete: false);
 
-            // Bind queues to exchange
-            _channel.QueueBind(
-                queue: "email.welcome",
-                exchange: ExchangeName,
-                routingKey: "email.welcome");
+            //// Bind queues to exchange
+            //_channel.QueueBind(
+            //    queue: "email.welcome",
+            //    exchange: ExchangeName,
+            //    routingKey: "email.welcome");
 
-            _channel.QueueBind(
-                queue: "email.contact.created",
-                exchange: ExchangeName,
-                routingKey: "email.contact.created");
+            //_channel.QueueBind(
+            //    queue: "email.contact.created",
+            //    exchange: ExchangeName,
+            //    routingKey: "email.contact.created");
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            try
-            {
-                // Welcome Email Consumer
-                var welcomeConsumer = new AsyncEventingBasicConsumer(_channel);
-                welcomeConsumer.Received += async (_, ea) =>
-                {
-                    try
-                    {
-                        var message = JsonSerializer.Deserialize<WelcomeEmailMessage>(
-                            Encoding.UTF8.GetString(ea.Body.ToArray()));
+            //try
+            //{
+            //    // Welcome Email Consumer
+            //    var welcomeConsumer = new AsyncEventingBasicConsumer(_channel);
+            //    welcomeConsumer.Received += async (_, ea) =>
+            //    {
+            //        try
+            //        {
+            //            var message = JsonSerializer.Deserialize<WelcomeEmailMessage>(
+            //                Encoding.UTF8.GetString(ea.Body.ToArray()));
 
-                        await _emailService.SendEmailAsync(
-                            message.To,
-                            "Welcome to Contact Management System",
-                            GetWelcomeEmailTemplate(message.UserName),
-                            true);
+            //            await _emailService.SendEmailAsync(
+            //                message.To,
+            //                "Welcome to Contact Management System",
+            //                GetWelcomeEmailTemplate(message.UserName),
+            //                true);
 
-                        _channel.BasicAck(ea.DeliveryTag, false);
-                        _logger.LogInformation("Welcome email sent to {Email}", message.To);
-                    }
-                    catch (Exception ex)
-                    {
-                        _logger.LogError(ex, "Error processing welcome email");
-                        _channel.BasicNack(ea.DeliveryTag, false, true);
-                    }
-                };
+            //            _channel.BasicAck(ea.DeliveryTag, false);
+            //            _logger.LogInformation("Welcome email sent to {Email}", message.To);
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            _logger.LogError(ex, "Error processing welcome email");
+            //            _channel.BasicNack(ea.DeliveryTag, false, true);
+            //        }
+            //    };
 
-                // Contact Created Email Consumer
-                var contactConsumer = new AsyncEventingBasicConsumer(_channel);
-                contactConsumer.Received += async (_, ea) =>
-                {
-                    try
-                    {
-                        var message = JsonSerializer.Deserialize<ContactCreatedEmailMessage>(
-                            Encoding.UTF8.GetString(ea.Body.ToArray()));
+            //    // Contact Created Email Consumer
+            //    var contactConsumer = new AsyncEventingBasicConsumer(_channel);
+            //    contactConsumer.Received += async (_, ea) =>
+            //    {
+            //        try
+            //        {
+            //            var message = JsonSerializer.Deserialize<ContactCreatedEmailMessage>(
+            //                Encoding.UTF8.GetString(ea.Body.ToArray()));
 
-                        await _emailService.SendEmailAsync(
-                            message.To,
-                            "New Contact Created",
-                            GetContactCreatedEmailTemplate(message.ContactName),
-                            true);
+            //            await _emailService.SendEmailAsync(
+            //                message.To,
+            //                "New Contact Created",
+            //                GetContactCreatedEmailTemplate(message.ContactName),
+            //                true);
 
-                        _channel.BasicAck(ea.DeliveryTag, false);
-                        _logger.LogInformation("Contact created email sent to {Email}", message.To);
-                    }
-                    catch (Exception ex)
-                    {
-                        _logger.LogError(ex, "Error processing contact created email");
-                        _channel.BasicNack(ea.DeliveryTag, false, true);
-                    }
-                };
+            //            _channel.BasicAck(ea.DeliveryTag, false);
+            //            _logger.LogInformation("Contact created email sent to {Email}", message.To);
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            _logger.LogError(ex, "Error processing contact created email");
+            //            _channel.BasicNack(ea.DeliveryTag, false, true);
+            //        }
+            //    };
 
-                var contactUpdatedConsumer = new AsyncEventingBasicConsumer(_channel);
-                contactUpdatedConsumer.Received += async (_, ea) =>
-                {
-                    try
-                    {
-                        var message = JsonSerializer.Deserialize<ContactUpdatedEmailMessage>(
-                            Encoding.UTF8.GetString(ea.Body.ToArray()));
+            //    var contactUpdatedConsumer = new AsyncEventingBasicConsumer(_channel);
+            //    contactUpdatedConsumer.Received += async (_, ea) =>
+            //    {
+            //        try
+            //        {
+            //            var message = JsonSerializer.Deserialize<ContactUpdatedEmailMessage>(
+            //                Encoding.UTF8.GetString(ea.Body.ToArray()));
 
-                        await _emailService.SendEmailAsync(
-                            message.To,
-                            "Contact Information Updated",
-                            ContactUpdatedEmailTemplate.GetTemplate(message.ContactName),
-                            true);
+            //            await _emailService.SendEmailAsync(
+            //                message.To,
+            //                "Contact Information Updated",
+            //                ContactUpdatedEmailTemplate.GetTemplate(message.ContactName),
+            //                true);
 
-                        _channel.BasicAck(ea.DeliveryTag, false);
-                        _logger.LogInformation("Contact updated email sent to {Email}", message.To);
-                    }
-                    catch (Exception ex)
-                    {
-                        _logger.LogError(ex, "Error processing contact updated email");
-                        _channel.BasicNack(ea.DeliveryTag, false, true);
-                    }
-                };
+            //            _channel.BasicAck(ea.DeliveryTag, false);
+            //            _logger.LogInformation("Contact updated email sent to {Email}", message.To);
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            _logger.LogError(ex, "Error processing contact updated email");
+            //            _channel.BasicNack(ea.DeliveryTag, false, true);
+            //        }
+            //    };
 
-                // Start consuming
-                _channel.BasicConsume(
-                    queue: "email.welcome",
-                    autoAck: false,
-                    consumer: welcomeConsumer);
+            //    // Start consuming
+            //    _channel.BasicConsume(
+            //        queue: "email.welcome",
+            //        autoAck: false,
+            //        consumer: welcomeConsumer);
 
-                _channel.BasicConsume(
-                    queue: "email.contact.created",
-                    autoAck: false,
-                    consumer: contactConsumer);
+            //    _channel.BasicConsume(
+            //        queue: "email.contact.created",
+            //        autoAck: false,
+            //        consumer: contactConsumer);
 
-                _channel.BasicConsume(
-                    queue: "email.contact.updated",
-                    autoAck: false,
-                    consumer: contactUpdatedConsumer);
+            //    _channel.BasicConsume(
+            //        queue: "email.contact.updated",
+            //        autoAck: false,
+            //        consumer: contactUpdatedConsumer);
 
 
-                while (!stoppingToken.IsCancellationRequested)
-                {
-                    await Task.Delay(1000, stoppingToken);
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error in email worker");
-            }
+            //    while (!stoppingToken.IsCancellationRequested)
+            //    {
+            //        await Task.Delay(1000, stoppingToken);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex, "Error in email worker");
+            //}
         }
 
         private string GetWelcomeEmailTemplate(string userName)

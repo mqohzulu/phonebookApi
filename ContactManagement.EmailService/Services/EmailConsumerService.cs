@@ -34,59 +34,59 @@ namespace ContactManagement.EmailService.Services
 
         private void InitializeRabbitMQ()
         {
-            var factory = new ConnectionFactory
-            {
-                HostName = _rabbitMQSettings.HostName,
-                UserName = _rabbitMQSettings.UserName,
-                Password = _rabbitMQSettings.Password,
-                VirtualHost = _rabbitMQSettings.VirtualHost
-            };
+            //var factory = new ConnectionFactory
+            //{
+            //    HostName = _rabbitMQSettings.HostName,
+            //    UserName = _rabbitMQSettings.UserName,
+            //    Password = _rabbitMQSettings.Password,
+            //    VirtualHost = _rabbitMQSettings.VirtualHost
+            //};
 
-            _connection = factory.CreateConnection();
-            _channel = _connection.CreateModel();
+            //_connection = factory.CreateConnection();
+            //_channel = _connection.CreateModel();
 
-            _channel.ExchangeDeclare("email_exchange", ExchangeType.Direct);
-            _channel.QueueDeclare("email_queue", true, false, false, null);
-            _channel.QueueBind("email_queue", "email_exchange", "email_routing_key");
+            //_channel.ExchangeDeclare("email_exchange", ExchangeType.Direct);
+            //_channel.QueueDeclare("email_queue", true, false, false, null);
+            //_channel.QueueBind("email_queue", "email_exchange", "email_routing_key");
         }
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            var consumer = new EventingBasicConsumer(_channel);
+            //var consumer = new EventingBasicConsumer(_channel);
 
-            consumer.Received += async (model, ea) =>
-            {
-                var body = ea.Body.ToArray();
-                var message = JsonSerializer.Deserialize<EmailMessage>(
-                    Encoding.UTF8.GetString(body));
+            //consumer.Received += async (model, ea) =>
+            //{
+            //    var body = ea.Body.ToArray();
+            //    var message = JsonSerializer.Deserialize<EmailMessage>(
+            //        Encoding.UTF8.GetString(body));
 
-                try
-                {
-                    await _emailService.SendEmailAsync(
-                        message.To,
-                        message.Subject,
-                        message.Body,
-                        message.IsHtml);
+            //    try
+            //    {
+            //        await _emailService.SendEmailAsync(
+            //            message.To,
+            //            message.Subject,
+            //            message.Body,
+            //            message.IsHtml);
 
-                    _channel.BasicAck(ea.DeliveryTag, false);
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, "Error processing email message");
-                    _channel.BasicNack(ea.DeliveryTag, false, true);
-                }
-            };
+            //        _channel.BasicAck(ea.DeliveryTag, false);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        _logger.LogError(ex, "Error processing email message");
+            //        _channel.BasicNack(ea.DeliveryTag, false, true);
+            //    }
+            //};
 
-            _channel.BasicConsume(queue: "email_queue",
-                                autoAck: false,
-                                consumer: consumer);
+            //_channel.BasicConsume(queue: "email_queue",
+            //                    autoAck: false,
+            //                    consumer: consumer);
 
             return Task.CompletedTask;
         }
 
         public override void Dispose()
         {
-            _channel?.Dispose();
+            //_channel?.Dispose();
             _connection?.Dispose();
             base.Dispose();
         }

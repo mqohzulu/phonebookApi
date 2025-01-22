@@ -50,9 +50,23 @@ namespace ContactManagement.Domain.Entities
             return Result<Contact>.Success(new Contact(firstName, lastName, emailResult.Value, phoneNumberResult.Value, address, userId));
         }
 
-        public void Update(string firstName, string lastName, Email value1, PhoneNumber value2, Address value3)
+        public void Update(string firstName, string lastName,Email email,PhoneNumber phoneNumber,Address address, Guid updatedBy)  
         {
-            throw new NotImplementedException();
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            PhoneNumber = phoneNumber;
+            Address = address;
+            UpdatedAt = DateTime.UtcNow;
+
+            var domainEvent = new ContactUpdatedDomainEvent(
+                Id,               
+                firstName,         
+                lastName,          
+                email.Value,       
+                updatedBy);        
+
+            AddDomainEvent(domainEvent);
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ContactManagement.Application.Authentication.Common.Interfaces;
 
 namespace ContactManagement.Infrastructure.Persistance.Interceptors
 {
@@ -34,10 +35,10 @@ namespace ContactManagement.Infrastructure.Persistance.Interceptors
             DbContextEventData eventData,
             InterceptionResult<int> result,
             CancellationToken cancellationToken = default)
-        {
-            UpdateEntities(eventData.Context);
-            return base.SavingChangesAsync(eventData, result, cancellationToken);
-        }
+            {
+                UpdateEntities(eventData.Context);
+                return base.SavingChangesAsync(eventData, result, cancellationToken);
+            }
 
         private void UpdateEntities(DbContext? context)
         {
@@ -47,14 +48,14 @@ namespace ContactManagement.Infrastructure.Persistance.Interceptors
             {
                 if (entry.State == EntityState.Added)
                 {
-                    entry.Entity.CreatedBy = _currentUserService.UserId;
+                    entry.Entity.CreatedBy = _currentUserService.UserId.ToString();
                     entry.Entity.CreatedAt = _dateTime.UtcNow;
                 }
 
                 if (entry.State == EntityState.Added || entry.State == EntityState.Modified)
                 {
-                    entry.Entity.LastModifiedBy = _currentUserService.UserId;
-                    entry.Entity.LastModifiedAt = _dateTime.UtcNow;
+                    entry.Entity.ModifiedBy = _currentUserService.UserId.ToString();
+                    entry.Entity.ModifiedAt = _dateTime.UtcNow;
                 }
             }
         }

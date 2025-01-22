@@ -48,9 +48,17 @@ namespace ContactManagement.Infrastructure.Persistance.Repositories
             _context.Contacts.Remove(contact);
         }
 
-        public Task<List<Contact>> GetAllAsync()
+        public async Task<List<Contact>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Contacts
+                .Include(c => c.Address)
+                .OrderByDescending(c => c.CreatedAt)
+                .ToListAsync();
+        }
+
+        public async Task AddNoteAsync(ContactNote note)
+        {
+            await _context.Set<ContactNote>().AddAsync(note);
         }
     }
 }

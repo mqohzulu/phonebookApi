@@ -15,5 +15,6 @@ namespace ContactManagement.Application.Interfaces
         Task AddAsync(Contact contact);
         void Update(Contact contact);
         void Delete(Contact contact);
+        Task AddNoteAsync(ContactNote value);
     }
 }

@@ -33,7 +33,6 @@ namespace ContactManagement.Infrastructure.Persistance
             // Dispatch Domain Events before saving
             await DispatchDomainEvents();
 
-            // Save changes
             await _context.SaveChangesAsync(cancellationToken);
 
             return true;
