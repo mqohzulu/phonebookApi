@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "nVtH7DEHrS9FzlVsRyI3V3WmavLafS1da48EmQgezB1WIdBZz3pNYdH9qo5IZ7n++ac71Xlf6pP/0aJ5ZtG07g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\MqondisiZulu(SEG)\\source\\repos\\PhoneBookProject\\ContactManagement.Domain\\ContactManagement.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\MqondisiZulu(SEG)\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",
+    "C:\\Users\\MqondisiZulu(SEG)\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\MqondisiZulu(SEG)\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

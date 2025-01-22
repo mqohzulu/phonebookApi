@@ -1,0 +1,11 @@
+C:\Users\MqondisiZulu(SEG)\Source\Repos\ContactManagement.Domain\obj\Debug\net8.0\ContactManagement.Domain.csproj.AssemblyReference.cache
+C:\Users\MqondisiZulu(SEG)\Source\Repos\ContactManagement.Domain\obj\Debug\net8.0\ContactManagement.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MqondisiZulu(SEG)\Source\Repos\ContactManagement.Domain\obj\Debug\net8.0\ContactManagement.Domain.AssemblyInfoInputs.cache
+C:\Users\MqondisiZulu(SEG)\Source\Repos\ContactManagement.Domain\obj\Debug\net8.0\ContactManagement.Domain.AssemblyInfo.cs
+C:\Users\MqondisiZulu(SEG)\Source\Repos\ContactManagement.Domain\obj\Debug\net8.0\ContactManagement.Domain.csproj.CoreCompileInputs.cache
+C:\Users\MqondisiZulu(SEG)\source\repos\PhoneBookProject\ContactManagement.Domain\obj\Debug\net8.0\ContactManagement.Domain.csproj.AssemblyReference.cache
+C:\Users\MqondisiZulu(SEG)\source\repos\PhoneBookProject\ContactManagement.Domain\obj\Debug\net8.0\ContactManagement.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MqondisiZulu(SEG)\source\repos\PhoneBookProject\ContactManagement.Domain\obj\Debug\net8.0\ContactManagement.Domain.AssemblyInfoInputs.cache
+C:\Users\MqondisiZulu(SEG)\source\repos\PhoneBookProject\ContactManagement.Domain\obj\Debug\net8.0\ContactManagement.Domain.AssemblyInfo.cs
+C:\Users\MqondisiZulu(SEG)\source\repos\PhoneBookProject\ContactManagement.Domain\obj\Debug\net8.0\ContactManagement.Domain.csproj.CoreCompileInputs.cache
+C:\Users\MqondisiZulu(SEG)\source\repos\PhoneBookProject\ContactManagement.Domain\obj\Debug\net8.0\ContactManagement.Domain.sourcelink.json
