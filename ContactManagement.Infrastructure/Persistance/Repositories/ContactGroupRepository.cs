@@ -1,4 +1,4 @@
-﻿using ContactManagement.Application.Common.Interfaces;
+﻿using ContactManagement.Application.Interfaces;
 using ContactManagement.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;

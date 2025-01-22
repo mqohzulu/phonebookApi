@@ -21,4 +21,8 @@
     <ProjectReference Include="..\ContactManagement.Domain\ContactManagement.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Users\Queries\CheckEmailExist\" />
+  </ItemGroup>
+
 </Project>

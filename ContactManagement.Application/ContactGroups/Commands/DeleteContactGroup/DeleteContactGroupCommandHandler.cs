@@ -1,4 +1,5 @@
 ﻿using ContactManagement.Application.Common.Interfaces;
+using ContactManagement.Application.Interfaces;
 using ContactManagement.Domain.Common;
 using MediatR;
 using Microsoft.Extensions.Logging;

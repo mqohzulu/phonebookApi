@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ContactManagement.Application.Common.Interfaces;
 using ContactManagement.Application.DTOs;
+using ContactManagement.Application.Interfaces;
 using ContactManagement.Domain.Common;
 using MediatR;
 using System;

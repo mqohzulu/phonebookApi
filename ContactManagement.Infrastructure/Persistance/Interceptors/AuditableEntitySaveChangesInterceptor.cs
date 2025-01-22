@@ -15,26 +15,19 @@ namespace ContactManagement.Infrastructure.Persistance.Interceptors
         private readonly ICurrentUserService _currentUserService;
         private readonly IDateTime _dateTime;
 
-        public AuditableEntitySaveChangesInterceptor(
-            ICurrentUserService currentUserService,
-            IDateTime dateTime)
+        public AuditableEntitySaveChangesInterceptor( ICurrentUserService currentUserService,IDateTime dateTime)
         {
             _currentUserService = currentUserService;
             _dateTime = dateTime;
         }
 
-        public override InterceptionResult<int> SavingChanges(
-            DbContextEventData eventData,
-            InterceptionResult<int> result)
+        public override InterceptionResult<int> SavingChanges(DbContextEventData eventData,InterceptionResult<int> result)
         {
             UpdateEntities(eventData.Context);
             return base.SavingChanges(eventData, result);
         }
 
-        public override ValueTask<InterceptionResult<int>> SavingChangesAsync(
-            DbContextEventData eventData,
-            InterceptionResult<int> result,
-            CancellationToken cancellationToken = default)
+        public override ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData, InterceptionResult<int> result, CancellationToken cancellationToken = default)
             {
                 UpdateEntities(eventData.Context);
                 return base.SavingChangesAsync(eventData, result, cancellationToken);
