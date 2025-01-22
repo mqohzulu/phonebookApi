@@ -1,4 +1,5 @@
 ﻿using ContactManagement.Domain.Common;
+using MediatR;
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
