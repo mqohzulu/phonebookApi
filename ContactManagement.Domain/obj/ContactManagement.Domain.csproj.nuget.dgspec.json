@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\MqondisiZulu(SEG)\\Source\\Repos\\ContactManagement.Domain\\ContactManagement.Domain.csproj": {}
+    "C:\\Users\\MqondisiZulu(SEG)\\source\\repos\\PhoneBookProject\\ContactManagement.Domain\\ContactManagement.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\MqondisiZulu(SEG)\\Source\\Repos\\ContactManagement.Domain\\ContactManagement.Domain.csproj": {
+    "C:\\Users\\MqondisiZulu(SEG)\\source\\repos\\PhoneBookProject\\ContactManagement.Domain\\ContactManagement.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MqondisiZulu(SEG)\\Source\\Repos\\ContactManagement.Domain\\ContactManagement.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\MqondisiZulu(SEG)\\source\\repos\\PhoneBookProject\\ContactManagement.Domain\\ContactManagement.Domain.csproj",
         "projectName": "ContactManagement.Domain",
-        "projectPath": "C:\\Users\\MqondisiZulu(SEG)\\Source\\Repos\\ContactManagement.Domain\\ContactManagement.Domain.csproj",
+        "projectPath": "C:\\Users\\MqondisiZulu(SEG)\\source\\repos\\PhoneBookProject\\ContactManagement.Domain\\ContactManagement.Domain.csproj",
         "packagesPath": "C:\\Users\\MqondisiZulu(SEG)\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MqondisiZulu(SEG)\\Source\\Repos\\ContactManagement.Domain\\obj\\",
+        "outputPath": "C:\\Users\\MqondisiZulu(SEG)\\source\\repos\\PhoneBookProject\\ContactManagement.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\MqondisiZulu(SEG)\\AppData\\Roaming\\NuGet\\NuGet.Config",

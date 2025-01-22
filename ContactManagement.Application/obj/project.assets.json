@@ -813,11 +813,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MqondisiZulu(SEG)\\Source\\Repos\\ContactManagement.Application\\ContactManagement.Application.csproj",
+      "projectUniqueName": "C:\\Users\\MqondisiZulu(SEG)\\source\\repos\\PhoneBookProject\\ContactManagement.Application\\ContactManagement.Application.csproj",
       "projectName": "ContactManagement.Application",
-      "projectPath": "C:\\Users\\MqondisiZulu(SEG)\\Source\\Repos\\ContactManagement.Application\\ContactManagement.Application.csproj",
+      "projectPath": "C:\\Users\\MqondisiZulu(SEG)\\source\\repos\\PhoneBookProject\\ContactManagement.Application\\ContactManagement.Application.csproj",
       "packagesPath": "C:\\Users\\MqondisiZulu(SEG)\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MqondisiZulu(SEG)\\Source\\Repos\\ContactManagement.Application\\obj\\",
+      "outputPath": "C:\\Users\\MqondisiZulu(SEG)\\source\\repos\\PhoneBookProject\\ContactManagement.Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\MqondisiZulu(SEG)\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -834,8 +834,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\MqondisiZulu(SEG)\\Source\\Repos\\ContactManagement.Domain\\ContactManagement.Domain.csproj": {
-              "projectPath": "C:\\Users\\MqondisiZulu(SEG)\\Source\\Repos\\ContactManagement.Domain\\ContactManagement.Domain.csproj"
+            "C:\\Users\\MqondisiZulu(SEG)\\source\\repos\\PhoneBookProject\\ContactManagement.Domain\\ContactManagement.Domain.csproj": {
+              "projectPath": "C:\\Users\\MqondisiZulu(SEG)\\source\\repos\\PhoneBookProject\\ContactManagement.Domain\\ContactManagement.Domain.csproj"
             }
           }
         }

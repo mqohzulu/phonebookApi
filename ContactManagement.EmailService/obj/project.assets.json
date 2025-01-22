@@ -4286,11 +4286,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MqondisiZulu(SEG)\\Source\\Repos\\ContactManagement.EmailService\\ContactManagement.EmailService.csproj",
+      "projectUniqueName": "C:\\Users\\MqondisiZulu(SEG)\\source\\repos\\PhoneBookProject\\ContactManagement.EmailService\\ContactManagement.EmailService.csproj",
       "projectName": "ContactManagement.EmailService",
-      "projectPath": "C:\\Users\\MqondisiZulu(SEG)\\Source\\Repos\\ContactManagement.EmailService\\ContactManagement.EmailService.csproj",
+      "projectPath": "C:\\Users\\MqondisiZulu(SEG)\\source\\repos\\PhoneBookProject\\ContactManagement.EmailService\\ContactManagement.EmailService.csproj",
       "packagesPath": "C:\\Users\\MqondisiZulu(SEG)\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MqondisiZulu(SEG)\\Source\\Repos\\ContactManagement.EmailService\\obj\\",
+      "outputPath": "C:\\Users\\MqondisiZulu(SEG)\\source\\repos\\PhoneBookProject\\ContactManagement.EmailService\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\MqondisiZulu(SEG)\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4307,8 +4307,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\MqondisiZulu(SEG)\\Source\\Repos\\ContactManagement.Infrastructure\\ContactManagement.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\MqondisiZulu(SEG)\\Source\\Repos\\ContactManagement.Infrastructure\\ContactManagement.Infrastructure.csproj"
+            "C:\\Users\\MqondisiZulu(SEG)\\source\\repos\\PhoneBookProject\\ContactManagement.Infrastructure\\ContactManagement.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\MqondisiZulu(SEG)\\source\\repos\\PhoneBookProject\\ContactManagement.Infrastructure\\ContactManagement.Infrastructure.csproj"
             }
           }
         }

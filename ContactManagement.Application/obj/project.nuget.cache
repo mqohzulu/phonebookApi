@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DhzshAtf9g9Im9kBjtxHJicLvLiDwJDYZxNWowwHRK8CKY78CzU8JRY4PL5+dEBY1wgC8XDzBTGdDNnW/NPKOw==",
+  "dgSpecHash": "+l86hsKy2GEyOQeMZKiMhNzpW66yQmdR74vsFiWjBqoS7IDMmwl7GHB9l9PYH+XcdVq5OgqEIe16NuCxEF8ayw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\MqondisiZulu(SEG)\\Source\\Repos\\ContactManagement.Application\\ContactManagement.Application.csproj",
+  "projectFilePath": "C:\\Users\\MqondisiZulu(SEG)\\source\\repos\\PhoneBookProject\\ContactManagement.Application\\ContactManagement.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MqondisiZulu(SEG)\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\MqondisiZulu(SEG)\\.nuget\\packages\\automapper.collection\\10.0.0\\automapper.collection.10.0.0.nupkg.sha512",
