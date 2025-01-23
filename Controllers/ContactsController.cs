@@ -1,82 +1,64 @@
-﻿using ContactManagement.Application.Contacts.Commands.CreateContact;
+﻿using ContactManagement.Application.Contacts.Commands.AddContactNote;
+using ContactManagement.Application.Contacts.Commands.CreateContact;
+using ContactManagement.Application.Contacts.Commands.DeleteContact;
+using ContactManagement.Application.Contacts.Commands.UpdateContact;
 using ContactManagement.Application.Contacts.Queries.GetContact;
+using ContactManagement.Application.Contacts.Queries.GetContacts;
 using ContactManagement.Application.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using phonebookApi.Controllers;
 using phonebookApi.Models;
-using phonebookApi.Repositories.Interfaces;
 
 namespace PhonebookApp.API.Controllers
 {
     [Authorize]
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
     public class ContactsController : ApiControllerBase
     {
         [HttpGet]
-        [ProducesResponseType(typeof(List<ContactDto>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetContacts([FromQuery] GetContactQuery query)
+        public async Task<ActionResult<List<ContactDto>>> GetContacts([FromQuery] GetContactsQuery query)
         {
-            return HandleResult(await Mediator.Send(query));
+            return Ok(await Mediator.Send(query));
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(ContactDto), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetContact(Guid id)
         {
-            return HandleResult(await Mediator.Send(new GetContactQuery(id)));
+            return Ok(await Mediator.Send(new GetContactQuery(id)));
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateContact(CreateContactCommand command)
         {
             var result = await Mediator.Send(command);
-            if (!result.IsSuccess) return BadRequest(result.Error);
-
-            return CreatedAtAction(
-                nameof(GetContact),
-                new { id = result.Value },
-                result.Value);
+            return CreatedAtAction(nameof(GetContact), new { id = result.Value }, result);
         }
 
         [HttpPut("{id}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> UpdateContact(Guid id, UpdateContactCommand command)
         {
-            if (id != command.Id) return BadRequest("ID mismatch");
+            if (id != command.Id)
+                return BadRequest();
 
-            var result = await Mediator.Send(command);
-            return HandleResult(result);
+            return Ok(await Mediator.Send(command));
         }
 
         [HttpDelete("{id}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteContact(Guid id)
         {
-            var result = await Mediator.Send(new DeleteContactCommand(id));
-            if (!result.IsSuccess) return NotFound();
-
+            await Mediator.Send(new DeleteContactCommand(id));
             return NoContent();
         }
 
         [HttpPost("{id}/notes")]
-        [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> AddNote(Guid id, AddContactNoteCommand command)
         {
-            if (id != command.ContactId) return BadRequest("ID mismatch");
+            if (id != command.ContactId)
+                return BadRequest();
 
-            var result = await Mediator.Send(command);
-            return HandleResult(result);
+            return Ok(await Mediator.Send(command));
         }
     }
 

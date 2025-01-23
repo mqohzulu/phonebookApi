@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ContactManagement.Infrastructure.Exceptions;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
 
 namespace phonebookApi.Middileware
@@ -34,6 +35,7 @@ namespace phonebookApi.Middileware
             var response = context.Response;
             response.ContentType = "application/json";
 
+            // Map exception types to status codes
             response.StatusCode = exception switch
             {
                 ValidationException => StatusCodes.Status400BadRequest,
@@ -42,14 +44,28 @@ namespace phonebookApi.Middileware
                 _ => StatusCodes.Status500InternalServerError
             };
 
-            var result = JsonSerializer.Serialize(new
+            var errorResponse = new
             {
                 message = exception.Message,
-                statusCode = response.StatusCode
-            });
+                statusCode = response.StatusCode,
+                errorType = exception.GetType().Name
+            };
 
-            await response.WriteAsync(result);
+            try
+            {
+                var result = JsonSerializer.Serialize(errorResponse);
+                await response.WriteAsync(result);
+            }
+            catch (Exception serializationException)
+            {
+                // Handle potential serialization issues
+                var fallbackError = new { message = "An error occurred while processing the error response.", statusCode = 500 };
+                var fallbackResult = JsonSerializer.Serialize(fallbackError);
+                await response.WriteAsync(fallbackResult);
+
+            }
         }
+
     }
 
 }

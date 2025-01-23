@@ -1,9 +1,13 @@
-﻿using ContactManagement.Domain.Common;
+﻿using ContactManagement.Application.Authentication.Commands.Register;
+using ContactManagement.Application.Authentication.Common;
+using ContactManagement.Application.Authentication.Common.Interfaces;
+using ContactManagement.Application.Authentication.Comnands.Login;
+using ContactManagement.Application.Users.Commands.CreateUser;
+using ContactManagement.Domain.Common;
 using ContactManagement.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -21,38 +25,34 @@ namespace phonebookApi.Controllers
         }
 
         [HttpPost("login")]
-        [ProducesResponseType(typeof(AuthResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Login(LoginRequest request)
+        public async Task<IActionResult> Login(LoginCommand request)
         {
             var result = await _authService.AuthenticateAsync(request.Email, request.Password);
-            return HandleResult(result);
+            return Ok(result);
         }
 
         [HttpPost("register")]
-        [ProducesResponseType(typeof(AuthResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Register(RegisterRequest request)
+        public async Task<IActionResult> Register(RegisterCommand request)
         {
-            var command = new CreateUserCommand(
-                request.FirstName,
-                request.LastName,
-                request.Email,
-                request.Password);
+            var command = new CreateUserCommand
+            {
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                Email = request.Email,
+                Password = request.Password
+            };
 
             var result = await Mediator.Send(command);
-            return HandleResult(result);
+            return Ok(result);
         }
 
         [Authorize]
         [HttpPost("refresh-token")]
-        [ProducesResponseType(typeof(AuthResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> RefreshToken()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var result = await _authService.RefreshTokenAsync(Guid.Parse(userId));
-            return HandleResult(result);
+            var result = await _authService.RefreshTokenAsync(Guid.Parse(userId).ToString());
+            return Ok(result);
         }
     }
 
