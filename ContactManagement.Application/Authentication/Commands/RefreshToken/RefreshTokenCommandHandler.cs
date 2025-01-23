@@ -38,7 +38,7 @@ namespace ContactManagement.Application.Authentication.Comnands.RefreshToken
 
             // Validate refresh token
             var refreshToken = user.RefreshTokens.FirstOrDefault(rt => rt.Token == command.RefreshToken);
-            if (refreshToken == null || !refreshToken.IsValid)
+            if (refreshToken == null || refreshToken.IsRevoked)
                 return Result<AuthenticationResult>.Failure(
                     Error.Unauthorized("Auth.InvalidToken", "Invalid refresh token"));
 

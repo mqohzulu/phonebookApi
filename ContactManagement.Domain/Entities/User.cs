@@ -22,6 +22,9 @@ namespace ContactManagement.Domain.Entities
         public DateTime CreatedAt { get; private set; }
         public DateTime? LastLogin { get; private set; }
         private readonly List<UserRole> _roles = new();
+        private string value;
+        private List<Role> roles;
+
         public IReadOnlyCollection<UserRole> Roles => _roles.AsReadOnly();
 
         protected User() { }
@@ -35,6 +38,15 @@ namespace ContactManagement.Domain.Entities
             Password = password;
             IsActive = true;
             CreatedAt = DateTime.UtcNow;
+        }
+
+        public User(Guid id, string firstName, string lastName, string value, List<Role> roles)
+        {
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            this.value = value;
+            this.roles = roles;
         }
 
         public static Result<User> Create(string firstName, string lastName, string email, string password)

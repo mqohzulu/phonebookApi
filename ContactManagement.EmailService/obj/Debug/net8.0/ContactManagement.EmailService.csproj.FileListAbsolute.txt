@@ -1,0 +1,6 @@
+C:\Users\MqondisiZulu(SEG)\source\repos\PhoneBookProject\ContactManagement.EmailService\obj\Debug\net8.0\ContactManagement.EmailService.csproj.AssemblyReference.cache
+C:\Users\MqondisiZulu(SEG)\source\repos\PhoneBookProject\ContactManagement.EmailService\obj\Debug\net8.0\ContactManagement.EmailService.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MqondisiZulu(SEG)\source\repos\PhoneBookProject\ContactManagement.EmailService\obj\Debug\net8.0\ContactManagement.EmailService.AssemblyInfoInputs.cache
+C:\Users\MqondisiZulu(SEG)\source\repos\PhoneBookProject\ContactManagement.EmailService\obj\Debug\net8.0\ContactManagement.EmailService.AssemblyInfo.cs
+C:\Users\MqondisiZulu(SEG)\source\repos\PhoneBookProject\ContactManagement.EmailService\obj\Debug\net8.0\ContactManagement.EmailService.csproj.CoreCompileInputs.cache
+C:\Users\MqondisiZulu(SEG)\source\repos\PhoneBookProject\ContactManagement.EmailService\obj\Debug\net8.0\ContactManagement.EmailService.sourcelink.json

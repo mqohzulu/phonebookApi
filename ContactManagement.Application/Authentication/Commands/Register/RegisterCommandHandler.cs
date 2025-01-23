@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ContactManagement.Domain.Entities;
 
 namespace ContactManagement.Application.Authentication.Commands.Register
 {
@@ -34,11 +35,10 @@ namespace ContactManagement.Application.Authentication.Commands.Register
 
         public async Task<Result<AuthResponse>> Handle(RegisterCommand request, CancellationToken cancellationToken)
         {
-            // Check if email is already in use
+
             if (await _userRepository.ExistsByEmailAsync(request.Email))
                 return Result<AuthResponse>.Failure("Email is already registered");
 
-            // Create user using existing CreateUserCommand
             var createUserCommand = new CreateUserCommand
             {
                 FirstName = request.FirstName,
@@ -53,25 +53,22 @@ namespace ContactManagement.Application.Authentication.Commands.Register
             if (createUserResult.IsFailure)
                 return Result<AuthResponse>.Failure(createUserResult.Error);
 
-            // Get the created user
             var user = await _userRepository.GetByIdAsync(createUserResult.Value);
 
-            if (user == null)
+            if (user is null)
                 return Result<AuthResponse>.Failure("Failed to retrieve created user");
 
             // Generate tokens
-            var accessToken = _jwtTokenGenerator.GenerateToken(user, user.Roles.Select(r => r.Name).ToList());
+            var accessToken = _jwtTokenGenerator.GenerateToken(user, (IList<string>)user.Roles.Select(r => r.Role.Name));
             var refreshToken = _jwtTokenGenerator.GenerateRefreshToken(user.Id);
 
-            // Add refresh token to user
             user.AddRefreshToken(refreshToken);
             _userRepository.Update(user);
 
-            // Create auth response
             var response = new AuthResponse(
                 accessToken,
                 refreshToken.Token,
-                _dateTime.UtcNow.AddMinutes(TokenSettings.ExpiryMinutes),
+                _dateTime.UtcNow.AddMinutes(40),
                 new User(
                     user.Id,
                     user.FirstName,
