@@ -8,7 +8,6 @@ using ContactManagement.Application.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using phonebookApi.Controllers;
-using phonebookApi.Models;
 
 namespace PhonebookApp.API.Controllers
 {

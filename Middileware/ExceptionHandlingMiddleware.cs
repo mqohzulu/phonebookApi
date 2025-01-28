@@ -35,7 +35,6 @@ namespace phonebookApi.Middileware
             var response = context.Response;
             response.ContentType = "application/json";
 
-            // Map exception types to status codes
             response.StatusCode = exception switch
             {
                 ValidationException => StatusCodes.Status400BadRequest,
@@ -58,7 +57,6 @@ namespace phonebookApi.Middileware
             }
             catch (Exception serializationException)
             {
-                // Handle potential serialization issues
                 var fallbackError = new { message = "An error occurred while processing the error response.", statusCode = 500 };
                 var fallbackResult = JsonSerializer.Serialize(fallbackError);
                 await response.WriteAsync(fallbackResult);
