@@ -11,9 +11,9 @@ namespace ContactManagement.Infrastructure.Persistance.Repositories
 {
     public class ContactRepository : IContactRepository
     {
-        private readonly ApplicationDbContext _context;
+        private readonly PhonebookContext _context;
 
-        public ContactRepository(ApplicationDbContext context)
+        public ContactRepository(PhonebookContext context)
         {
             _context = context;
         }

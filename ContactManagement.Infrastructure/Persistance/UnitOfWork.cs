@@ -11,13 +11,11 @@ using System.Threading.Tasks;
 namespace ContactManagement.Infrastructure.Persistance
 {
     public class UnitOfWork : IUnitOfWork
-    {
-        private readonly ApplicationDbContext _context;
+    {   
+        private readonly PhonebookContext _context;
         private readonly IMediator _mediator;
 
-        public UnitOfWork(
-            ApplicationDbContext context,
-            IMediator mediator)
+        public UnitOfWork(PhonebookContext context, IMediator mediator)
         {
             _context = context;
             _mediator = mediator;

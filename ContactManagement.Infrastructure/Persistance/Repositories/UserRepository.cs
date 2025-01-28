@@ -13,9 +13,9 @@ namespace ContactManagement.Infrastructure.Persistance.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly ApplicationDbContext _context;
+        private readonly PhonebookContext _context;
 
-        public UserRepository(ApplicationDbContext context)
+        public UserRepository(PhonebookContext context)
         {
             _context = context;
         }

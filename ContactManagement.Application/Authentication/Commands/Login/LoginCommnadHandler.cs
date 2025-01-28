@@ -29,33 +29,30 @@ namespace ContactManagement.Application.Authentication.Comnands.Login
 
         public async Task<Result<AuthenticationResult>> Handle(LoginCommand command, CancellationToken cancellationToken)
         {
-            // Validate user exists
+
             var user = await _userRepository.GetByEmailAsync(command.Email);
             if (user == null)
                 return Result<AuthenticationResult>.Failure(
                     Error.Unauthorized("Auth.InvalidCredentials", "Invalid credentials"));
 
-            // Verify password
             if (!_passwordHasher.VerifyPassword(command.Password, user.Password.Hash))
                 return Result<AuthenticationResult>.Failure(
                     Error.Unauthorized("Auth.InvalidCredentials", "Invalid credentials"));
 
-            // Check if user is active
+
             if (!user.IsActive)
                 return Result<AuthenticationResult>.Failure(
                     Error.Unauthorized("Auth.InactiveUser", "User account is inactive"));
 
-            // Get user roles
+
             var roles = user.Roles.Select(r => r.Role.Name).ToList();
 
-            // Generate access token
+
             var token = _jwtTokenGenerator.GenerateToken(user, roles);
 
-            // Generate refresh token
             var refreshToken = _jwtTokenGenerator.GenerateRefreshToken(user.Id);
             user.AddRefreshToken(refreshToken);
 
-            // Update last login
             user.UpdateLastLogin();
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 

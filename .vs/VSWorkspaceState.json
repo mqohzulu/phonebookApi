@@ -1,9 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\phonebookApi",
-    "\\Repositories"
+    ""
   ],
-  "SelectedNode": "\\Repositories\\ContactRepository.cs",
+  "SelectedNode": "\\phonebookApi.sln (phonebookApi.sln)",
   "PreviewInSolutionExplorer": false
 }

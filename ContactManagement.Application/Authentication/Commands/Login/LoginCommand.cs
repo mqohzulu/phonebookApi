@@ -1,4 +1,5 @@
-﻿using ContactManagement.Domain.Common;
+﻿using ContactManagement.Application.Authentication.Common;
+using ContactManagement.Domain.Common;
 using MediatR;
 using System;
 using System.Collections.Generic;

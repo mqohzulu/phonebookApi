@@ -1,6 +1,0 @@
-C:\Users\MqondisiZulu(SEG)\source\repos\PhoneBookProject\ContactManagement.Application\obj\Debug\net8.0\ContactManagement.Application.csproj.AssemblyReference.cache
-C:\Users\MqondisiZulu(SEG)\source\repos\PhoneBookProject\ContactManagement.Application\obj\Debug\net8.0\ContactManagement.Application.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\MqondisiZulu(SEG)\source\repos\PhoneBookProject\ContactManagement.Application\obj\Debug\net8.0\ContactManagement.Application.AssemblyInfoInputs.cache
-C:\Users\MqondisiZulu(SEG)\source\repos\PhoneBookProject\ContactManagement.Application\obj\Debug\net8.0\ContactManagement.Application.AssemblyInfo.cs
-C:\Users\MqondisiZulu(SEG)\source\repos\PhoneBookProject\ContactManagement.Application\obj\Debug\net8.0\ContactManagement.Application.csproj.CoreCompileInputs.cache
-C:\Users\MqondisiZulu(SEG)\source\repos\PhoneBookProject\ContactManagement.Application\obj\Debug\net8.0\ContactManagement.Application.sourcelink.json

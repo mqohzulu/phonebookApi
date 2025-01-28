@@ -18,10 +18,7 @@ namespace ContactManagement.Application.Authentication.Comnands.RefreshToken
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
         private readonly IUnitOfWork _unitOfWork;
 
-        public RefreshTokenCommandHandler(
-            IUserRepository userRepository,
-            IJwtTokenGenerator jwtTokenGenerator,
-            IUnitOfWork unitOfWork)
+        public RefreshTokenCommandHandler( IUserRepository userRepository, IJwtTokenGenerator jwtTokenGenerator,IUnitOfWork unitOfWork)
         {
             _userRepository = userRepository;
             _jwtTokenGenerator = jwtTokenGenerator;
@@ -30,26 +27,24 @@ namespace ContactManagement.Application.Authentication.Comnands.RefreshToken
 
         public async Task<Result<AuthenticationResult>> Handle(RefreshTokenCommand command, CancellationToken cancellationToken)
         {
-            // Find user by refresh token
+
             var user = await _userRepository.GetByRefreshTokenAsync(command.RefreshToken);
             if (user == null)
                 return Result<AuthenticationResult>.Failure(
                     Error.Unauthorized("Auth.InvalidToken", "Invalid refresh token"));
 
-            // Validate refresh token
             var refreshToken = user.RefreshTokens.FirstOrDefault(rt => rt.Token == command.RefreshToken);
             if (refreshToken == null || refreshToken.IsRevoked)
                 return Result<AuthenticationResult>.Failure(
                     Error.Unauthorized("Auth.InvalidToken", "Invalid refresh token"));
 
-            // Get user roles
+
             var roles = user.Roles.Select(r => r.Role.Name).ToList();
 
-            // Generate new tokens
             var token = _jwtTokenGenerator.GenerateToken(user, roles);
             var newRefreshToken = _jwtTokenGenerator.GenerateRefreshToken(user.Id);
 
-            // Revoke old refresh token and add new one
+
             refreshToken.Revoke();
             user.AddRefreshToken(newRefreshToken);
 

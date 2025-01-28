@@ -13,11 +13,11 @@ namespace ContactManagement.Infrastructure.Persistance
 
     public class PhonebookContext : DbContext
     {
-        public PhonebookContext(DbContextOptions<PhonebookContext> options)
-            : base(options)
+        public PhonebookContext(DbContextOptions<PhonebookContext> options): base(options)
         {
         }
 
+        public DbSet<User> Users { get; set; }
         public DbSet<Contact> Contacts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

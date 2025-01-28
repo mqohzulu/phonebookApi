@@ -12,12 +12,10 @@ namespace ContactManagement.Infrastructure.Persistance.Repositories
 {
     public class ContactGroupRepository : IContactGroupRepository
     {
-        private readonly ApplicationDbContext _context;
+        private readonly PhonebookContext _context;
         private readonly ILogger<ContactGroupRepository> _logger;
 
-        public ContactGroupRepository(
-            ApplicationDbContext context,
-            ILogger<ContactGroupRepository> logger)
+        public ContactGroupRepository(PhonebookContext context,ILogger<ContactGroupRepository> logger)
         {
             _context = context;
             _logger = logger;

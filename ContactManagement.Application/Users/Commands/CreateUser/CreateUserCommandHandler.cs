@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IUnitOfWork = ContactManagement.Application.Common.Interfaces.IUnitOfWork;
+
 
 namespace ContactManagement.Application.Users.Commands.CreateUser
 {
@@ -23,25 +23,24 @@ namespace ContactManagement.Application.Users.Commands.CreateUser
         private readonly IRabbitMQService _rabbitMQService;
 
         public CreateUserCommandHandler(IUserRepository userRepository,IPasswordHasher passwordHasher,IUnitOfWork unitOfWork)
-            {
-                _userRepository = userRepository;
-                _passwordHasher = passwordHasher;
-                _unitOfWork = unitOfWork;
-            }
+        {
+            _userRepository = userRepository;
+            _passwordHasher = passwordHasher;
+            _unitOfWork = unitOfWork;
+        }
 
         public async Task<Result<Guid>> Handle(CreateUserCommand command, CancellationToken cancellationToken)
         {
-            // Check if email is already in use
             if (await _userRepository.ExistsByEmailAsync(command.Email))
                 return Result<Guid>.Failure(Error.Conflict("User.DuplicateEmail", "Email is already in use"));
 
-            // Create user
             var emailResult = Email.Create(command.Email);
             if (emailResult.IsFailure)
                 return Result<Guid>.Failure(emailResult.Error);
 
             var passwordHash = _passwordHasher.HashPassword(command.Password);
             var passwordResult = Password.Create(passwordHash);
+
             if (passwordResult.IsFailure)
                 return Result<Guid>.Failure(passwordResult.Error);
 

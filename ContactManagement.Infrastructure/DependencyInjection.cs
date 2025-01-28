@@ -42,10 +42,10 @@ namespace ContactManagement.Infrastructure
 
         private static void AddPersistence(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<PhonebookContext>(options =>
                 options.UseSqlServer(
                     configuration.GetConnectionString("DefaultConnection"),
-                    b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+                    b => b.MigrationsAssembly(typeof(PhonebookContext).Assembly.FullName)));
 
             services.AddScoped<AuditableEntitySaveChangesInterceptor>();
 
